@@ -9,3 +9,7 @@
         ```
         php -S localhost:58003
         ```
+
+1. Теперь пишите свой код на HTML/CSS/JS, чтобы результат совпадал с GitHub pages:
+    - https://pavelhalanin.github.io/api.nbrb.by/ - страница с конвертером валют
+    - https://pavelhalanin.github.io/api.nbrb.by/api/swagger/ - документация API в SwaggerUI
