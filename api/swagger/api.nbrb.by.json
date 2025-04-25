@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Документация API",
+    "description": "Документация API в виде SwaggerUI через [конфиг OpenAPI 3.0](/api/swagger/api.nbrb.by.json)",
+    "contact": { "email": "pavel.innokentevich.galanin@gmail.com" },
+    "version": "2025.04.26"
+  },
+  "servers": [
+    {
+      "url": "https://api.nbrb.by"
+    }
+  ],
+  "tags": [
+    {
+      "name": "api.nbrb.by",
+      "description": "Курс валют"
+    }
+  ],
+  "paths": {
+    "/exrates/rates": {
+      "get": {
+        "tags": ["api.nbrb.by"],
+        "summary": "Курс валют для белорусского рубля",
+        "description": "Из списка транзакций составлен список заказов",
+        "parameters": [
+          {
+            "name": "periodicity",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешно получен список заказов",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Cur_ID": {
+                        "type": "number",
+                        "default": "идентификатор валюты"
+                      },
+                      "Date": {
+                        "type": "string",
+                        "default": "дата курса валют"
+                      },
+                      "Cur_Abbreviation": {
+                        "type": "string",
+                        "default": "Код валюты, например, USD, EUR"
+                      },
+                      "Cur_Scale": {
+                        "type": "number",
+                        "default": "Количество белорусских рублей для перевода. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
+                      },
+                      "Cur_Name": {
+                        "type": "string",
+                        "default": "наименование валюты"
+                      },
+                      "Cur_OfficialRate": {
+                        "type": "number",
+                        "default": "Количество валюты получится из белорусских рублей. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Не верный запрос. Возможно, не указан параметр periodicity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "Periodicity": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number",
+                      "default": "HTTP статус код"
+                    },
+                    "traceId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка на сервере"
+          }
+        }
+      }
+    }
+  }
+}
