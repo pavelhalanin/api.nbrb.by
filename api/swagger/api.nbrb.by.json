@@ -6,6 +6,10 @@
     "contact": { "email": "pavel.innokentevich.galanin@gmail.com" },
     "version": "2025.04.26"
   },
+  "externalDocs": {
+    "description": "Документация API Национального Банка Республики Беларусь",
+    "url": "https://www.nbrb.by/apihelp/exrates"
+  },
   "servers": [
     {
       "url": "https://api.nbrb.by"
@@ -22,7 +26,7 @@
       "get": {
         "tags": ["api.nbrb.by"],
         "summary": "Курс валют для белорусского рубля",
-        "description": "Из списка транзакций составлен список заказов",
+        "description": "Получаем массив курса валют.",
         "parameters": [
           {
             "name": "periodicity",
@@ -36,7 +40,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Успешно получен список заказов",
+            "description": "Успешно получен список курса валют",
             "content": {
               "application/json": {
                 "schema": {
@@ -46,27 +50,27 @@
                     "properties": {
                       "Cur_ID": {
                         "type": "number",
-                        "default": "идентификатор валюты"
+                        "description": "идентификатор валюты"
                       },
                       "Date": {
                         "type": "string",
-                        "default": "дата курса валют"
+                        "description": "дата курса валют"
                       },
                       "Cur_Abbreviation": {
                         "type": "string",
-                        "default": "Код валюты, например, USD, EUR"
+                        "description": "Код валюты, например, USD, EUR"
                       },
                       "Cur_Scale": {
                         "type": "number",
-                        "default": "Количество белорусских рублей для перевода. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
+                        "description": "Количество белорусских рублей для перевода. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
                       },
                       "Cur_Name": {
                         "type": "string",
-                        "default": "наименование валюты"
+                        "description": "наименование валюты"
                       },
                       "Cur_OfficialRate": {
                         "type": "number",
-                        "default": "Количество валюты получится из белорусских рублей. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
+                        "description": "Количество валюты получится из белорусских рублей. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
                       }
                     }
                   }
@@ -97,10 +101,103 @@
                     },
                     "status": {
                       "type": "number",
-                      "default": "HTTP статус код"
+                      "description": "HTTP статус код"
                     },
                     "traceId": {
                       "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка на сервере"
+          }
+        }
+      }
+    },
+    "/exrates/currencies": {
+      "get": {
+        "tags": ["api.nbrb.by"],
+        "summary": "полный перечень валют",
+        "description": "Получаем массив валют. Его наименование на русском, белорусском и английском языке. Период действия валюты.",
+        "responses": {
+          "200": {
+            "description": "Успешно получен список заказов",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Cur_ID": {
+                        "type": "number",
+                        "description": "идентификатор валюты"
+                      },
+                      "Cur_ParentID": {
+                        "type": "number",
+                        "description": "идентификатор родителя валюты"
+                      },
+                      "Cur_Code": {
+                        "type": "string"
+                      },
+                      "Cur_Abbreviation": {
+                        "type": "string"
+                      },
+                      "Cur_Name": {
+                        "type": "string",
+                        "description": "наименование валюты на русском языке"
+                      },
+                      "Cur_Name_Bel": {
+                        "type": "string",
+                        "description": "наименование валюты на белорусском языке языке"
+                      },
+                      "Cur_Name_Eng": {
+                        "type": "string",
+                        "description": "наименование валюты на английском языке"
+                      },
+                      "Cur_QuotName": {
+                        "type": "string",
+                        "description": "количество валюты на русском языке"
+                      },
+                      "Cur_QuotName_Bel": {
+                        "type": "string",
+                        "description": "количество валюты на белорусском языке"
+                      },
+                      "Cur_QuotName_Eng": {
+                        "type": "string",
+                        "description": "количество валюты на английском языке"
+                      },
+                      "Cur_NameMulti": {
+                        "type": "string",
+                        "description": "наименование ? на русском языке"
+                      },
+                      "Cur_Name_BelMulti": {
+                        "type": "string",
+                        "description": "наименование ? на белорусском языке"
+                      },
+                      "Cur_Name_EngMulti": {
+                        "type": "string",
+                        "description": "наименование ? на английском языке"
+                      },
+                      "Cur_Scale": {
+                        "type": "number",
+                        "description": "количество валюты для перевода в белорусские рубли"
+                      },
+                      "Cur_Periodicity": {
+                        "type": "number",
+                        "description": "наименование валюты на русском языке"
+                      },
+                      "Cur_DateStart": {
+                        "type": "string",
+                        "description": "начало периода существования валюты"
+                      },
+                      "Cur_DateEnd": {
+                        "type": "string",
+                        "description": "конец периода существования валюты"
+                      }
                     }
                   }
                 }
