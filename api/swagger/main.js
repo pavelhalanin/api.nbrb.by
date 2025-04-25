@@ -7,7 +7,8 @@ class SwaggerUI__Helper {
 
   static innerHtmlSwaggerUI() {
     try {
-      const _URL = SwaggerUI__Helper.getUrl();
+      const NO_CACHE_PREFIX = `?v=${new Date().toJSON().slice(0,19)}`;
+      const _URL = SwaggerUI__Helper.getUrl() + NO_CACHE_PREFIX;
       window.ui = SwaggerUIBundle({
         url: _URL,
         dom_id: "#swagger-ui",
