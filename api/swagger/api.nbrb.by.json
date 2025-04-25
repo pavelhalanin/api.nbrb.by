@@ -50,27 +50,27 @@
                     "properties": {
                       "Cur_ID": {
                         "type": "number",
-                        "description": "идентификатор валюты"
+                        "description": "внутренний код"
                       },
                       "Date": {
                         "type": "string",
-                        "description": "дата курса валют"
+                        "description": "дата, на которую запрашивается курс"
                       },
                       "Cur_Abbreviation": {
                         "type": "string",
-                        "description": "Код валюты, например, USD, EUR"
+                        "description": "буквенный код"
                       },
                       "Cur_Scale": {
                         "type": "number",
-                        "description": "Количество белорусских рублей для перевода. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
+                        "description": "количество единиц иностранной валюты"
                       },
                       "Cur_Name": {
                         "type": "string",
-                        "description": "наименование валюты"
+                        "description": "наименование валюты на русском языке во множественном, либо в единственном числе, в зависимости от количества единиц"
                       },
                       "Cur_OfficialRate": {
                         "type": "number",
-                        "description": "Количество валюты получится из белорусских рублей. \nФормула: <Cur_Scale> BYN = <Cur_OfficialRate> USD"
+                        "description": "курс"
                       }
                     }
                   }
@@ -134,17 +134,19 @@
                     "properties": {
                       "Cur_ID": {
                         "type": "number",
-                        "description": "идентификатор валюты"
+                        "description": "внутренний код"
                       },
                       "Cur_ParentID": {
                         "type": "number",
-                        "description": "идентификатор родителя валюты"
+                        "description": "этот код используется для связи, при изменениях наименования, количества единиц к которому устанавливается курс белорусского рубля, буквенного, цифрового кодов и т.д. фактически одной и той же валюты"
                       },
                       "Cur_Code": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "цифровой код"
                       },
                       "Cur_Abbreviation": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "буквенный код"
                       },
                       "Cur_Name": {
                         "type": "string",
@@ -152,51 +154,51 @@
                       },
                       "Cur_Name_Bel": {
                         "type": "string",
-                        "description": "наименование валюты на белорусском языке языке"
+                        "description": "наименование на белорусском языке"
                       },
                       "Cur_Name_Eng": {
                         "type": "string",
-                        "description": "наименование валюты на английском языке"
+                        "description": "наименование на английском языке"
                       },
                       "Cur_QuotName": {
                         "type": "string",
-                        "description": "количество валюты на русском языке"
+                        "description": "наименование валюты на русском языке, содержащее количество единиц"
                       },
                       "Cur_QuotName_Bel": {
                         "type": "string",
-                        "description": "количество валюты на белорусском языке"
+                        "description": "наименование на белорусском языке, содержащее количество единиц"
                       },
                       "Cur_QuotName_Eng": {
                         "type": "string",
-                        "description": "количество валюты на английском языке"
+                        "description": "наименование на английском языке, содержащее количество единиц"
                       },
                       "Cur_NameMulti": {
                         "type": "string",
-                        "description": "наименование ? на русском языке"
+                        "description": "наименование валюты на русском языке во множественном числе"
                       },
                       "Cur_Name_BelMulti": {
                         "type": "string",
-                        "description": "наименование ? на белорусском языке"
+                        "description": "наименование валюты на белорусском языке во множественном числе"
                       },
                       "Cur_Name_EngMulti": {
                         "type": "string",
-                        "description": "наименование ? на английском языке"
+                        "description": "наименование на английском языке во множественном числе"
                       },
                       "Cur_Scale": {
                         "type": "number",
-                        "description": "количество валюты для перевода в белорусские рубли"
+                        "description": "количество единиц иностранной валюты"
                       },
                       "Cur_Periodicity": {
                         "type": "number",
-                        "description": "наименование валюты на русском языке"
+                        "description": "периодичность установления курса (0 – ежедневно, 1 – ежемесячно)"
                       },
                       "Cur_DateStart": {
                         "type": "string",
-                        "description": "начало периода существования валюты"
+                        "description": "дата включения валюты в перечень валют, к которым устанавливается официальный курс бел. рубля"
                       },
                       "Cur_DateEnd": {
                         "type": "string",
-                        "description": "конец периода существования валюты"
+                        "description": "дата исключения валюты из перечня валют, к которым устанавливается официальный курс бел. рубля"
                       }
                     }
                   }
