@@ -311,6 +311,31 @@
               }
             }
           },
+          "404": {
+            "description": "Не найдена валюта по id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP статус код"
+                    },
+                    "traceId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "Ошибка на сервере"
           }
