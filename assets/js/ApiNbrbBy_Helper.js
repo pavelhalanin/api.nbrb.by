@@ -1,4 +1,4 @@
-class ApiNbrbBy {
+class ApiNbrbBy_Helper {
   static onChange() {
     try {
       const INPUT = document.getElementById("nbrbby_input");
@@ -21,7 +21,7 @@ class ApiNbrbBy {
 
   static async setSelect() {
     try {
-      const ARRAY = await ApiNbrbBy.fetchJson();
+      const ARRAY = await ApiNbrbBy_Helper.fetchJson();
       const SELECT = document.getElementById("nbrbby_select");
 
       let html = "";
@@ -54,7 +54,7 @@ class ApiNbrbBy {
       }
 
       SELECT.innerHTML = html;
-      ApiNbrbBy.onChange();
+      ApiNbrbBy_Helper.onChange();
     } catch (exception) {
       console.error(exception);
     }

@@ -4,59 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Конвертер белорусских валют</title>
-    <link rel="stylesheet" href="/api.nbrb.by/assets/npm/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <title>НБРБ API</title>
+    <meta name="description" content="НБРБ API. Документация API Национального Банка Республики Беларусь." />
+    <meta name="keywords" content="НБРБ API Документация Национальный Банк Республика Беларусь" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="row mt-2">
-            <div class="col-6">
-                <input
-                    type="number"
-                    class="form-control border-primary"
-                    id="nbrbby_input"
-                    value="1"
-                    step="0.01"
-                    min="0"
-                    oninput="ApiNbrbBy.onChange()"
-                />
-            </div>
-            <div class="col-6">
-                <select
-                    class="form-select border-primary"
-                    id="nbrbby_select"
-                    onchange="ApiNbrbBy.onChange()"
-                ></select>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-6">
-                <input
-                    type="number"
-                    class="form-control"
-                    id="nbrbby_output"
-                    step="0.01"
-                    min="0"
-                    readonly
-                />
-            </div>
-            <div class="col-6">
-                <input
-                    type="text"
-                    class="form-control col-6"
-                    value="BYN - Белорусский рубль"
-                    readonly
-                />
-            </div>
-        </div>
-        <div class="text-end mt-3">
-            <a class="btn btn-primary" href="/api.nbrb.by/api/swagger/">Документация API в SwaggerUI</a>
-        </div>
+    <div id="root">
+        <div id="root-tabs"></div>
+        <div id="root-content"></div>
     </div>
-    <script src="/api.nbrb.by/js/ApiNbrnBy.class.js?v=2025-04-26_03-02"></script>
+
+    <link rel="stylesheet" href="assets/css/main.css?v=2025-04-30_12-10" />
+    <link rel="stylesheet" href="assets/npm/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="assets/npm/node_modules/swagger-ui/dist/swagger-ui.css" />
+    <script src="assets/npm/node_modules/swagger-ui/dist/swagger-ui-bundle.js"></script>
+    <script src="assets/js/SwaggerUI_Helper.js?v=2025-04-30_12-10"></script>
+
+    <script src="assets/js/Tabs_Helper.js?v=2025-04-30_12-10"></script>
+    <script src="assets/js/ApiNbrbBy_Helper.js?v=2025-04-30_12-10"></script>
+
     <script>
-        ApiNbrbBy.setSelect();
+        Tabs_Helper.innerHtml_tabs();
+        Tabs_Helper.selectTab_byTabId('2');
     </script>
 </body>
 

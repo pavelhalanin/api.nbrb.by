@@ -1,4 +1,4 @@
-class SwaggerUI__Helper {
+class SwaggerUI_Helper {
   static getUrl() {
     const SELECT = document.getElementById("swagger_ui__select");
     const _URL = SELECT.value;
@@ -7,8 +7,8 @@ class SwaggerUI__Helper {
 
   static innerHtmlSwaggerUI() {
     try {
-      const NO_CACHE_PREFIX = `?v=${new Date().toJSON().slice(0,19)}`;
-      const _URL = SwaggerUI__Helper.getUrl() + NO_CACHE_PREFIX;
+      const NO_CACHE_PREFIX = `?v=${new Date().toJSON().slice(0, 19)}`;
+      const _URL = SwaggerUI_Helper.getUrl() + NO_CACHE_PREFIX;
       window.ui = SwaggerUIBundle({
         url: _URL,
         dom_id: "#swagger-ui",
@@ -18,7 +18,3 @@ class SwaggerUI__Helper {
     }
   }
 }
-
-window.onload = () => {
-  SwaggerUI__Helper.innerHtmlSwaggerUI();
-};

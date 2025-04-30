@@ -1,0 +1,25 @@
+package-lock.json
+node_modules/*
+
+# < < < < < < < <
+node_modules/bootstrap/*
+node_modules/bootstrap/dist/*
+node_modules/bootstrap/dist/css/*
+
+!node_modules/bootstrap
+!node_modules/bootstrap/dist
+!node_modules/bootstrap/dist/css
+!node_modules/bootstrap/dist/css/bootstrap.min.css
+!node_modules/bootstrap/dist/css/bootstrap.min.css.map
+# > > > > > > > > >
+
+# < < < < < < < <
+node_modules/swagger-ui/*
+node_modules/swagger-ui/dist/*
+
+!node_modules/swagger-ui
+!node_modules/swagger-ui/dist
+!node_modules/swagger-ui/dist/swagger-ui-bundle.js
+!node_modules/swagger-ui/dist/swagger-ui.css
+!node_modules/swagger-ui/dist/swagger-ui.css.map
+# > > > > > > > > >
