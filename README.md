@@ -1,15 +1,26 @@
 ## Запуск сайта
 
-1. Создайте папку `www`
-1. Добавите папку `api.nbrb.by` в папку `www`
-1. Запустите из папки `www` сервер:
-
-    - через PHP:
-
-        ```
-        php -S localhost:58003
-        ```
-
-1. Теперь пишите свой код на HTML/CSS/JS, чтобы результат совпадал с GitHub pages:
-    - https://pavelhalanin.github.io/api.nbrb.by/ - страница с конвертером валют
-    - https://pavelhalanin.github.io/api.nbrb.by/api/swagger/ - документация API в SwaggerUI
+- Для начала разработки откройте сайт в браузере (4 способа)
+    - Запуск сайта через PHP
+        - Запустите локальный сервер командой:
+            ```
+            cd public_html
+            php -S localhost:58003
+            ```
+        - Откройте страницу в браузере: http://localhost:58003
+    - Запуск сайта через NodeJS
+        - Запустите локальный сервер командой:
+            ```
+            cd public_html
+            npx serve -p 58003
+            ```
+        - Откройте страницу в браузере: http://localhost:58003
+    - Запуск сайта через Dockerfile
+        - Запустите локальный сервер командой:
+            ```
+            docker-compose up
+            ```
+        - Откройте страницу в браузере: http://localhost:58003
+    - Открыть index.html
+        - Два раза нажмите на файл index.html
+        - Файл должен открыться в браузере: file:///D:/_git/api.nbrb.by/public_html/index.html

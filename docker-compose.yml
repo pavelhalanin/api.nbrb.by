@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  frontend:
+    build: .
+    ports:
+      - 50003:80
+    volumes:
+      - ./public_html:/usr/share/nginx/html
