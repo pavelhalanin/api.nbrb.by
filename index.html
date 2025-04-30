@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>НБРБ API</title>
+    <meta name="description" content="НБРБ API. Документация API Национального Банка Республики Беларусь." />
+    <meta name="keywords" content="НБРБ API Документация Национальный Банк Республика Беларусь" />
+</head>
+
+<body>
+    <div id="root">
+        <div id="root-tabs"></div>
+        <div id="root-content"></div>
+    </div>
+
+    <link rel="stylesheet" href="assets/css/main.css?v=2025-04-30_12-10" />
+    <link rel="stylesheet" href="assets/npm/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="assets/npm/node_modules/swagger-ui/dist/swagger-ui.css" />
+    <script src="assets/npm/node_modules/swagger-ui/dist/swagger-ui-bundle.js"></script>
+    <script src="assets/js/SwaggerUI_Helper.js?v=2025-04-30_12-10"></script>
+
+    <script src="assets/js/Tabs_Helper.js?v=2025-04-30_12-10"></script>
+    <script src="assets/js/ApiNbrbBy_Helper.js?v=2025-04-30_12-10"></script>
+
+    <script>
+        Tabs_Helper.innerHtml_tabs();
+        Tabs_Helper.selectTab_byTabId('2');
+    </script>
+</body>
+
+</html>

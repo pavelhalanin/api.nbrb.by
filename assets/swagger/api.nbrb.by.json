@@ -1,0 +1,346 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Документация API",
+    "description": "Документация API в виде SwaggerUI через [конфиг OpenAPI 3.0](/api/swagger/api.nbrb.by.json)",
+    "contact": { "email": "pavel.innokentevich.galanin@gmail.com" },
+    "version": "2025.04.26"
+  },
+  "externalDocs": {
+    "description": "Документация API Национального Банка Республики Беларусь",
+    "url": "https://www.nbrb.by/apihelp/exrates"
+  },
+  "servers": [
+    {
+      "url": "https://api.nbrb.by"
+    }
+  ],
+  "tags": [
+    {
+      "name": "api.nbrb.by",
+      "description": "Курс валют"
+    }
+  ],
+  "paths": {
+    "/exrates/rates": {
+      "get": {
+        "tags": ["api.nbrb.by"],
+        "summary": "официальный курс белорусского рубля по отношению к иностранным валютам, устанавливаемый Национальным банком",
+        "description": "Получаем массив курса валют.",
+        "parameters": [
+          {
+            "name": "periodicity",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешно получен список курса валют",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Cur_ID": {
+                        "type": "number",
+                        "description": "внутренний код"
+                      },
+                      "Date": {
+                        "type": "string",
+                        "description": "дата, на которую запрашивается курс"
+                      },
+                      "Cur_Abbreviation": {
+                        "type": "string",
+                        "description": "буквенный код"
+                      },
+                      "Cur_Scale": {
+                        "type": "number",
+                        "description": "количество единиц иностранной валюты"
+                      },
+                      "Cur_Name": {
+                        "type": "string",
+                        "description": "наименование валюты на русском языке во множественном, либо в единственном числе, в зависимости от количества единиц"
+                      },
+                      "Cur_OfficialRate": {
+                        "type": "number",
+                        "description": "курс"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Не верный запрос. Возможно, не указан параметр periodicity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "Periodicity": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP статус код"
+                    },
+                    "traceId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка на сервере"
+          }
+        }
+      }
+    },
+    "/exrates/currencies": {
+      "get": {
+        "tags": ["api.nbrb.by"],
+        "summary": "полный перечень валют",
+        "description": "Получаем массив валют. Его наименование на русском, белорусском и английском языке. Период действия валюты.",
+        "responses": {
+          "200": {
+            "description": "Успешно получен список валют",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Cur_ID": {
+                        "type": "number",
+                        "description": "внутренний код"
+                      },
+                      "Cur_ParentID": {
+                        "type": "number",
+                        "description": "этот код используется для связи, при изменениях наименования, количества единиц к которому устанавливается курс белорусского рубля, буквенного, цифрового кодов и т.д. фактически одной и той же валюты"
+                      },
+                      "Cur_Code": {
+                        "type": "string",
+                        "description": "цифровой код"
+                      },
+                      "Cur_Abbreviation": {
+                        "type": "string",
+                        "description": "буквенный код"
+                      },
+                      "Cur_Name": {
+                        "type": "string",
+                        "description": "наименование валюты на русском языке"
+                      },
+                      "Cur_Name_Bel": {
+                        "type": "string",
+                        "description": "наименование на белорусском языке"
+                      },
+                      "Cur_Name_Eng": {
+                        "type": "string",
+                        "description": "наименование на английском языке"
+                      },
+                      "Cur_QuotName": {
+                        "type": "string",
+                        "description": "наименование валюты на русском языке, содержащее количество единиц"
+                      },
+                      "Cur_QuotName_Bel": {
+                        "type": "string",
+                        "description": "наименование на белорусском языке, содержащее количество единиц"
+                      },
+                      "Cur_QuotName_Eng": {
+                        "type": "string",
+                        "description": "наименование на английском языке, содержащее количество единиц"
+                      },
+                      "Cur_NameMulti": {
+                        "type": "string",
+                        "description": "наименование валюты на русском языке во множественном числе"
+                      },
+                      "Cur_Name_BelMulti": {
+                        "type": "string",
+                        "description": "наименование валюты на белорусском языке во множественном числе"
+                      },
+                      "Cur_Name_EngMulti": {
+                        "type": "string",
+                        "description": "наименование на английском языке во множественном числе"
+                      },
+                      "Cur_Scale": {
+                        "type": "number",
+                        "description": "количество единиц иностранной валюты"
+                      },
+                      "Cur_Periodicity": {
+                        "type": "number",
+                        "description": "периодичность установления курса (0 – ежедневно, 1 – ежемесячно)"
+                      },
+                      "Cur_DateStart": {
+                        "type": "string",
+                        "description": "дата включения валюты в перечень валют, к которым устанавливается официальный курс бел. рубля"
+                      },
+                      "Cur_DateEnd": {
+                        "type": "string",
+                        "description": "дата исключения валюты из перечня валют, к которым устанавливается официальный курс бел. рубля"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка на сервере"
+          }
+        }
+      }
+    },
+    "/exrates/currencies/{id}": {
+      "get": {
+        "tags": ["api.nbrb.by"],
+        "summary": "данные валюты",
+        "description": "Получаем данные об одной валюте по ID. Его наименование на русском, белорусском и английском языке. Период действия валюты.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "default": "431",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешно получены данные о валюте",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Cur_ID": {
+                      "type": "number",
+                      "description": "внутренний код"
+                    },
+                    "Cur_ParentID": {
+                      "type": "number",
+                      "description": "этот код используется для связи, при изменениях наименования, количества единиц к которому устанавливается курс белорусского рубля, буквенного, цифрового кодов и т.д. фактически одной и той же валюты"
+                    },
+                    "Cur_Code": {
+                      "type": "string",
+                      "description": "цифровой код"
+                    },
+                    "Cur_Abbreviation": {
+                      "type": "string",
+                      "description": "буквенный код"
+                    },
+                    "Cur_Name": {
+                      "type": "string",
+                      "description": "наименование валюты на русском языке"
+                    },
+                    "Cur_Name_Bel": {
+                      "type": "string",
+                      "description": "наименование на белорусском языке"
+                    },
+                    "Cur_Name_Eng": {
+                      "type": "string",
+                      "description": "наименование на английском языке"
+                    },
+                    "Cur_QuotName": {
+                      "type": "string",
+                      "description": "наименование валюты на русском языке, содержащее количество единиц"
+                    },
+                    "Cur_QuotName_Bel": {
+                      "type": "string",
+                      "description": "наименование на белорусском языке, содержащее количество единиц"
+                    },
+                    "Cur_QuotName_Eng": {
+                      "type": "string",
+                      "description": "наименование на английском языке, содержащее количество единиц"
+                    },
+                    "Cur_NameMulti": {
+                      "type": "string",
+                      "description": "наименование валюты на русском языке во множественном числе"
+                    },
+                    "Cur_Name_BelMulti": {
+                      "type": "string",
+                      "description": "наименование валюты на белорусском языке во множественном числе"
+                    },
+                    "Cur_Name_EngMulti": {
+                      "type": "string",
+                      "description": "наименование на английском языке во множественном числе"
+                    },
+                    "Cur_Scale": {
+                      "type": "number",
+                      "description": "количество единиц иностранной валюты"
+                    },
+                    "Cur_Periodicity": {
+                      "type": "number",
+                      "description": "периодичность установления курса (0 – ежедневно, 1 – ежемесячно)"
+                    },
+                    "Cur_DateStart": {
+                      "type": "string",
+                      "description": "дата включения валюты в перечень валют, к которым устанавливается официальный курс бел. рубля"
+                    },
+                    "Cur_DateEnd": {
+                      "type": "string",
+                      "description": "дата исключения валюты из перечня валют, к которым устанавливается официальный курс бел. рубля"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Не найдена валюта по id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP статус код"
+                    },
+                    "traceId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка на сервере"
+          }
+        }
+      }
+    }
+  }
+}
