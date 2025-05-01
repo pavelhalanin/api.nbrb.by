@@ -2,7 +2,7 @@
   "openapi": "3.0.4",
   "info": {
     "title": "Документация API",
-    "description": "Документация API в виде SwaggerUI через [конфиг OpenAPI 3.0](/api/swagger/api.nbrb.by.json)",
+    "description": "Документация API в виде SwaggerUI через конфиг OpenAPI 3.0",
     "contact": { "email": "pavel.innokentevich.galanin@gmail.com" },
     "version": "2025.04.26"
   },
@@ -330,6 +330,81 @@
                     },
                     "traceId": {
                       "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка на сервере"
+          }
+        }
+      }
+    },
+    "/exrates/rates/dynamics/{id}": {
+      "get": {
+        "tags": ["api.nbrb.by"],
+        "summary": "курс валюты на указанный период",
+        "description": "Получаем данные об одной валюте по ID на указанный период.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 431
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Начало периода",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2024-01-01"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Конец периода",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2024-12-31"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешно получены данные о валюте",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Cur_ID": {
+                        "type": "number",
+                        "description": "внутренний код валюты",
+                        "example": 431
+                      },
+                      "Date": {
+                        "type": "string",
+                        "description": "дата курса валюты",
+                        "example": "2024-11-29"
+                      },
+                      "Cur_OfficialRate": {
+                        "type": "number",
+                        "description": "курс валюты",
+                        "example": 2.5951
+                      }
                     }
                   }
                 }
